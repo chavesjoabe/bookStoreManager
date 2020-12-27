@@ -1,11 +1,12 @@
 package com.joabechaves.bookstoremanager.services;
 
+import com.joabechaves.bookstoremanager.dto.BookDto;
 import com.joabechaves.bookstoremanager.dto.MessageResponseDTO;
 import com.joabechaves.bookstoremanager.entities.Book;
+import com.joabechaves.bookstoremanager.mapper.BookMapper;
 import com.joabechaves.bookstoremanager.repositories.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
 public class BookService implements IBookService {
 
     private IBookRepository repository;
+    private final BookMapper bookMapper = BookMapper.INSTANCE;
+
 
     @Autowired
     public BookService(IBookRepository repository){
@@ -20,15 +23,18 @@ public class BookService implements IBookService {
     }
 
 
-    public MessageResponseDTO create(Book book){
-        Book savedBook = this.repository.save(book);
+    public MessageResponseDTO create(BookDto bookDto){
+        Book savedBook = bookMapper.toModel(bookDto);
+
+        this.repository.save(savedBook);
+
         return MessageResponseDTO.builder().
                 message("Book saved with ID - " + savedBook.getId()).
                 build();
     }
 
     @Override
-    public MessageResponseDTO update(Book book) {
+    public MessageResponseDTO update(BookDto book) {
         return null;
     }
 
