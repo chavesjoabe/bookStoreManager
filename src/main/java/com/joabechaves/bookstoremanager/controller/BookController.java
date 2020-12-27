@@ -3,6 +3,7 @@ package com.joabechaves.bookstoremanager.controller;
 import com.joabechaves.bookstoremanager.dto.MessageResponseDTO;
 import com.joabechaves.bookstoremanager.entities.Book;
 import com.joabechaves.bookstoremanager.repositories.IBookRepository;
+import com.joabechaves.bookstoremanager.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,19 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/books")
 public class BookController {
 
-    private IBookRepository repository;
+    private BookService service;
 
     @Autowired
-    public BookController(IBookRepository repository){
-        this.repository = repository;
+    public BookController(BookService service) {
+        this.service = service;
     }
-
 
     @PostMapping
     public MessageResponseDTO create(@RequestBody Book book){
-        Book savedBook = this.repository.save(book);
-        return MessageResponseDTO.builder().
-                message("Book saved with ID - " + savedBook.getId()).
-                build();
+        return this.service.create(book);
     }
 }
