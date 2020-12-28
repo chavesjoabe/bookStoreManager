@@ -2,6 +2,7 @@ package com.joabechaves.bookstoremanager.services;
 
 import com.joabechaves.bookstoremanager.dto.BookDto;
 import com.joabechaves.bookstoremanager.dto.MessageResponseDTO;
+import com.joabechaves.bookstoremanager.entities.Author;
 import com.joabechaves.bookstoremanager.entities.Book;
 import com.joabechaves.bookstoremanager.mapper.BookMapper;
 import com.joabechaves.bookstoremanager.repositories.IBookRepository;

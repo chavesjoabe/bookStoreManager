@@ -23,8 +23,7 @@ public class BookDto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 200)
+    @NotNull
     private String name;
 
     @NotNull
@@ -33,11 +32,11 @@ public class BookDto {
     @NotNull
     private Integer chapters;
 
-    @NotBlank
+    @NotNull
     @Size(max = 100)
     private String isbn;
 
-    @NotBlank
+    @NotNull
     @Size(max = 200)
     private String publisherName;
 

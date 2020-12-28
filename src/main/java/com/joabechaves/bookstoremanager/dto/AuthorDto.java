@@ -22,12 +22,11 @@ public class AuthorDto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Size(max = 200)
     private String name;
 
     @NotNull
-    @Size(max = 100)
     private Integer age;
 
 }
